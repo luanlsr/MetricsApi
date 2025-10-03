@@ -34,7 +34,6 @@ namespace MetricsApi.Domain.Entities.Orders
             if (existing != null)
             {
                 existing.AddQuantity(item.Quantity);
-                AddDomainEvent(new OrderItemQuantityChanged(existing.Id, existing.Quantity));
             }
             else
             {

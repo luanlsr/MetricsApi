@@ -1,20 +1,28 @@
 using MetricsApi.Web.Extensions;
+using MetricsApi.Web.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
-builder.Services.AddApplicationDependencies(builder.Configuration);
-builder.Services.AddSwaggerDocumentation();
-builder.Services.AddCorsPolicy();
+var databaseSettings = new DatabaseSettings
+{
+    ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection")!,
+    Provider = builder.Configuration.GetValue<string>("DatabaseProvider") ?? "PostgreSQL"
+};
+builder.Services.AddApplicationDependencies(databaseSettings)
+                .AddSwaggerDocumentation()
+                .AddCorsPolicy()
+                .AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure middlewares
-app.UseSwaggerDocumentation();
-app.UseCorsPolicy();
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
+// Middlewares
+app.UseSwaggerDocumentation()
+   .UseCorsPolicy()
+   .UseCustomMiddlewares()
+   .UseHttpsRedirection()
+   .UseAuthentication()
+   .UseAuthorization();
 
 app.MapControllers();
 

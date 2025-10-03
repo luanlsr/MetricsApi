@@ -18,14 +18,35 @@ namespace MetricsApi.Domain.Entities.Products
         {
             Sku = sku;
             Title = title;
+            Description = description;
             Price = price;
             Stock = stock;
-            Description = description;
         }
 
         public static Product Create(string sku, string title, decimal price, int stock, string? description = null)
         {
-            return new Product(Guid.NewGuid(), sku.Trim(), title.Trim(), price, stock, description?.Trim());
+            return new Product(Guid.NewGuid(), sku, title, price, stock, description);
+        }
+
+        public void Update(string title, string? description, decimal price, int stock)
+        {
+            Title = title;
+            Description = description;
+
+            if (Price != price)
+            {
+                Price = price;
+                AddDomainEvent(new ProductPriceUpdated(Id, price));
+            }
+
+            if (Stock != stock)
+            {
+                Stock = stock;
+                AddDomainEvent(new ProductStockChanged(Id, stock));
+            }
+
+            AddDomainEvent(new ProductInfoUpdated(Id, Title, Description));
+            Touch();
         }
 
         public void UpdatePrice(decimal newPrice)

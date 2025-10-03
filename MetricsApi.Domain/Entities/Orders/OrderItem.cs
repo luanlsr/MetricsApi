@@ -12,7 +12,7 @@ namespace MetricsApi.Domain.Entities.Orders
 
         private OrderItem() { } // EF Core
 
-        internal OrderItem(Guid id, Guid productId, string sku, decimal unitPrice, int quantity)
+        private OrderItem(Guid id, Guid productId, string sku, decimal unitPrice, int quantity)
             : base(id)
         {
             if (quantity <= 0) throw new ArgumentException("Quantity must be greater than zero.", nameof(quantity));
@@ -22,6 +22,12 @@ namespace MetricsApi.Domain.Entities.Orders
             Sku = sku;
             UnitPrice = unitPrice;
             Quantity = quantity;
+        }
+
+        // Factory method público
+        public static OrderItem Create(Guid productId, string sku, decimal unitPrice, int quantity)
+        {
+            return new OrderItem(Guid.NewGuid(), productId, sku, unitPrice, quantity);
         }
 
         public void AddQuantity(int qty)
