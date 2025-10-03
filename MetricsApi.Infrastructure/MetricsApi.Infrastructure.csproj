@@ -23,4 +23,9 @@
     <PackageReference Include="StackExchange.Redis" Version="2.9.25" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MetricsApi.CrossCutting\MetricsApi.CrossCutting.csproj" />
+    <ProjectReference Include="..\MetricsApi.Domain\MetricsApi.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

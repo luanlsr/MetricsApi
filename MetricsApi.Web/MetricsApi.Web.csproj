@@ -25,4 +25,11 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MetricsApi.Application\MetricsApi.Application.csproj" />
+    <ProjectReference Include="..\MetricsApi.CrossCutting\MetricsApi.CrossCutting.csproj" />
+    <ProjectReference Include="..\MetricsApi.Infrastructure\MetricsApi.Infrastructure.csproj" />
+    <ProjectReference Include="..\MetricsApi.IoC\MetricsApi.IoC.csproj" />
+  </ItemGroup>
+
 </Project>
