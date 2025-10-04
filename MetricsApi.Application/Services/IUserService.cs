@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MetricsApi.Application.Services
 {
-    internal interface IUserService
+    public interface IUserService
     {
     }
 }

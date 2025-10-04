@@ -64,7 +64,6 @@ namespace MetricsApi.Infrastructure.Repositories
             return _products.AsQueryable();
         }
 
-        // Métodos específicos do ProductRepository
         public async Task<Product?> GetBySkuAsync(string sku)
         {
             return await _products.FirstOrDefaultAsync(p => p.Sku == sku);

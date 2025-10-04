@@ -2,14 +2,11 @@
 {
     public abstract class Entity<TId>
     {
-        // Identidade
         public TId Id { get; protected set; } = default!;
 
-        // Auditoria
         public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; protected set; } = DateTime.UtcNow;
 
-        // Construtor parameterless para EF
         protected Entity() { }
 
         protected Entity(TId id)
@@ -21,7 +18,6 @@
 
         protected void Touch() => UpdatedAt = DateTime.UtcNow;
 
-        // --- Domain Events ---
         private readonly List<object> _domainEvents = new();
 
         /// <summary>

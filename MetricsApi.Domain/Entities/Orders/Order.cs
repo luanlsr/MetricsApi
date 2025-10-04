@@ -12,7 +12,7 @@ namespace MetricsApi.Domain.Entities.Orders
         public decimal Total => _items.Sum(i => i.UnitPrice * i.Quantity);
         public OrderStatus Status { get; private set; }
 
-        private Order() { } // EF Core
+        private Order() { }
 
         private Order(Guid id, Guid userId)
             : base(id)

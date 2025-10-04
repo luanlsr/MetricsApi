@@ -10,7 +10,7 @@ namespace MetricsApi.Domain.Entities.Orders
         public decimal UnitPrice { get; private set; }
         public int Quantity { get; private set; }
 
-        private OrderItem() { } // EF Core
+        private OrderItem() { }
 
         private OrderItem(Guid id, Guid productId, string sku, decimal unitPrice, int quantity)
             : base(id)

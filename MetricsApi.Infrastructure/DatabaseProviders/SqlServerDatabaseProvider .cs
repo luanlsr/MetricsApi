@@ -7,19 +7,6 @@ using System.Threading.Tasks;
 
 namespace MetricsApi.Infrastructure.DatabaseProviders
 {
-    public class PostgreSqlDatabaseProvider : IDatabaseProvider
-    {
-        private readonly string _connectionString;
-
-        public PostgreSqlDatabaseProvider(string connectionString)
-        {
-            _connectionString = connectionString;
-        }
-
-        public string GetConnectionString() => _connectionString;
-        public string GetProviderName() => "PostgreSQL";
-    }
-
     public class SqlServerDatabaseProvider : IDatabaseProvider
     {
         private readonly string _connectionString;

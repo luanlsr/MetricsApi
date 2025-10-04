@@ -22,14 +22,9 @@ namespace MetricsApi.Application.Commands.Users.Handlers
             _userRepository = userRepository;
         }
 
-        // CREATE
         public async Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var names = request.Name.Split(' ', 2);
-            var firstName = names[0];
-            var lastName = names.Length > 1 ? names[1] : "";
-
-            var name = new PersonName(firstName, lastName);
+            var name = PersonName.FromFullName(request.Name);
             var email = new Email(request.Email);
 
             var user = User.Create(name, email);
@@ -47,7 +42,6 @@ namespace MetricsApi.Application.Commands.Users.Handlers
             );
         }
 
-        // UPDATE EMAIL
         public async Task<UserDto> Handle(UpdateUserEmailCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
@@ -68,7 +62,6 @@ namespace MetricsApi.Application.Commands.Users.Handlers
             );
         }
 
-        // DELETE
         public async Task<Unit> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByIdAsync(request.Id, cancellationToken);

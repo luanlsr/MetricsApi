@@ -10,7 +10,7 @@ namespace MetricsApi.Domain.Entities.Users
         public Email Email { get; private set; } = default!;
         public bool Active { get; private set; }
 
-        private User() { } // EF Core
+        private User() { }
 
         private User(Guid id, PersonName name, Email email)
             : base(id)

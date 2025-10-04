@@ -10,7 +10,6 @@ namespace MetricsApi.Infrastructure.Context
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
 
-        // DbSets
         public DbSet<User> Users => Set<User>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Order> Orders => Set<Order>();
@@ -20,7 +19,6 @@ namespace MetricsApi.Infrastructure.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            // Aplicar mappings de cada entidade
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }

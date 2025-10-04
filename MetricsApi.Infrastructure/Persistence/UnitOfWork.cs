@@ -45,7 +45,6 @@ namespace MetricsApi.Infrastructure.Persistence
             await _context.SaveChangesAsync(cancellationToken);
             await _currentTransaction.CommitAsync(cancellationToken);
 
-            // Dispara Domain Events somente após commit
             await DispatchDomainEventsAsync();
 
             await _currentTransaction.DisposeAsync();

@@ -11,7 +11,6 @@ namespace MetricsApi.Infrastructure.Events
     {
         public Task PublishAsync(object domainEvent)
         {
-            // Apenas loga o evento no console por enquanto
             Console.WriteLine($"[DomainEvent] {domainEvent.GetType().Name}: {System.Text.Json.JsonSerializer.Serialize(domainEvent)}");
             return Task.CompletedTask;
         }

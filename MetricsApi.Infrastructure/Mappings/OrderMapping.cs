@@ -22,7 +22,6 @@ namespace MetricsApi.Infrastructure.Mappings
             builder.Property(o => o.CreatedAt).IsRequired();
             builder.Property(o => o.UpdatedAt).IsRequired();
 
-            // Relação com OrderItems
             builder.HasMany(o => o.Items)
                    .WithOne()
                    .HasForeignKey("OrderId")

@@ -1,17 +1,17 @@
 version: "3.8"
 
 services:
-  postgres:
-    image: postgres:15
-    container_name: aprendeops-postgres
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    platform: linux/amd64
+    container_name: metrics-mssql
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: aprendeops
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "SuaSenhaForte!2025"
     ports:
-      - "5432:5432"
+      - "1433:1433"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mssql_data:/var/opt/mssql
 
 volumes:
-  pgdata:
+  mssql_data:

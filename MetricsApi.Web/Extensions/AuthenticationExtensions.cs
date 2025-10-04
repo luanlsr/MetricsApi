@@ -10,7 +10,6 @@ namespace MetricsApi.Web.Extensions
         {
             var jwtSettings = configuration.GetSection("JwtSettings");
 
-            // Pega e valida os valores
             var secretKey = jwtSettings.GetValue<string>("Secret");
             var issuer = jwtSettings.GetValue<string>("Issuer");
             var audience = jwtSettings.GetValue<string>("Audience");
@@ -49,7 +48,6 @@ namespace MetricsApi.Web.Extensions
                 };
             });
 
-            // Authorization policy padrão (roles podem ser adicionadas nos Controllers)
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));

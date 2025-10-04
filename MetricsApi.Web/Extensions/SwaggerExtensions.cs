@@ -15,7 +15,6 @@ namespace MetricsApi.Web.Extensions
                     Version = "v1"
                 });
 
-                // JWT Authorization no Swagger
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme.",

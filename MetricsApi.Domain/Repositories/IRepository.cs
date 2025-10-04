@@ -13,8 +13,8 @@ namespace MetricsApi.Domain.Repositories
 
 
         Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
-        void Update(TEntity entity); // mark as updated in the context
-        void Remove(TEntity entity); // mark as removed in the context
+        void Update(TEntity entity);
+        void Remove(TEntity entity);
 
 
         /// <summary>

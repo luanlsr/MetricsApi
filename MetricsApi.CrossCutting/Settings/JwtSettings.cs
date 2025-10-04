@@ -1,4 +1,4 @@
-﻿namespace MetricsApi.Web.Settings
+﻿namespace MetricsApi.CrossCutting.Settings
 {
     public class JwtSettings
     {
